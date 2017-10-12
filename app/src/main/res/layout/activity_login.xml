@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="18"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:layout_above="@+id/textView5"
         android:layout_alignStart="@+id/user_password" />
 
