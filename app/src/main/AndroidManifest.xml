@@ -50,7 +50,16 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home" />
+        <activity android:name=".OptionsActivity" />
+        <activity android:name=".AddContacts" />
+        <activity android:name=".EnableSharingActivity" />
+
+        <service
+            android:name=".LocationService"
+            android:exported="false" />
+
+        <activity android:name=".SharingToME"></activity>
     </application>
 
 </manifest>

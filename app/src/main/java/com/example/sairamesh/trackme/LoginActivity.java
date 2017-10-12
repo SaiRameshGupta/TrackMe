@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText email;
-    private  EditText password;
+    private EditText password;
     private Button login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(mAuth.getCurrentUser()!=null){
+                    Registration.uid=mAuth.getCurrentUser().getUid();
                     startActivity(new Intent(LoginActivity.this,MapsActivity.class));
                 }
             }

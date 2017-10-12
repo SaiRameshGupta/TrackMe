@@ -23,9 +23,10 @@ public class Registration extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
-    private String uid;
+    public static String uid;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button user_login;
+    public static GetContactsList get;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,37 +54,42 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(mAuth.getCurrentUser()!=null){
-                    startActivity(new Intent(Registration.this,MapsActivity.class));
+                    uid=mAuth.getCurrentUser().getUid();
+                    get=new GetContactsList(Registration.uid);
+                    startActivity(new Intent(Registration.this,OptionsActivity.class));
                 }
             }
         };
 
     }
     private void signUp(){
-        String user_email= email.getText().toString();
+        final String user_email= email.getText().toString();
         String user_password= password.getText().toString();
         mAuth.createUserWithEmailAndPassword(user_email,user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(Registration.this,"Registered Successfully",Toast.LENGTH_LONG).show();
+                    uid = mAuth.getCurrentUser().getUid();
+                    mDatabase=FirebaseDatabase.getInstance().getReference("UsersSharing").child(uid);
+                    mDatabase.child("isActive").setValue("false");
+                    mDatabase.child("location").setValue(" ; ");
+                    mDatabase.child("sharingTo").setValue(" ").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isComplete())
+                                Toast.makeText(Registration.this,"Completed Adding Row",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    mDatabase=FirebaseDatabase.getInstance().getReference("Users");
+                    mDatabase.child(uid).setValue(user_email);
                 }else{
                     Toast.makeText(Registration.this,"Error in Registration",Toast.LENGTH_LONG).show();
                 }
             }
         });
         if(mAuth.getCurrentUser()!=null) {
-            uid = mAuth.getCurrentUser().getUid();
-            mDatabase=FirebaseDatabase.getInstance().getReference("UsersSharing");
-            mDatabase.child("isActive").setValue("false");
-            mDatabase.child("location").setValue(" ; ");
-            mDatabase.child("sharingTo").setValue(" ").addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isComplete())
-                        Toast.makeText(Registration.this,"Completed Adding Row",Toast.LENGTH_SHORT).show();
-                }
-            });
+            Toast.makeText(Registration.this,"Entered",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.sairamesh.trackme.Registration">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="E-Mail"
-        android:textSize="24sp"
-        android:layout_alignBottom="@+id/user_email"
-        android:layout_alignStart="@+id/textView4" />
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/user_email"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/user_email"
+            android:layout_alignStart="@+id/textView4"
+            android:text="E-Mail"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView4"
+            android:layout_alignEnd="@+id/user_register"
+            android:layout_marginBottom="49dp"
+            android:layout_marginLeft="48dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingLeft="25dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="49dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_above="@+id/textView4"
-        android:layout_alignEnd="@+id/user_register" />
-
+        android:orientation="horizontal">
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -34,15 +47,17 @@
         android:layout_alignBottom="@+id/user_password"
         android:layout_alignStart="@+id/user_register" />
 
-    <EditText
-        android:id="@+id/user_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:layout_marginBottom="53dp"
-        android:layout_above="@+id/user_register"
-        android:layout_alignStart="@+id/user_email" />
+        <EditText
+            android:id="@+id/user_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/user_register"
+            android:layout_alignStart="@+id/user_email"
+            android:layout_marginBottom="53dp"
+            android:layout_marginLeft="5dp"
+            android:ems="10"
+            android:inputType="textPassword" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/user_register"
@@ -67,46 +82,10 @@
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"
+        android:text="Login" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textSize="24sp"
-        android:layout_marginBottom="82dp"
-        android:layout_above="@+id/textView3"
-        android:layout_alignStart="@+id/textView4" />
 
-    <EditText
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignStart="@+id/user_email" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="Phone number"
-        android:textSize="24sp"
-        android:layout_above="@+id/user_name"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:id="@+id/user_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName|number|phone"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_alignStart="@+id/user_name" />
-</RelativeLayout>
+</LinearLayout>
